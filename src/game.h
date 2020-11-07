@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdint>
+#include <random>
 
 static uint64_t hiBoardMask = 0xf0f0f0f0f0f0f0f0;
 static uint64_t loBoardMask = 0x0f0f0f0f0f0f0f0f;
@@ -34,6 +35,8 @@ void buildMoveTable(uint16_t* table);
  */
 void boardStateToArray(uint64_t board, uint8_t* arr);
 
+bool addRandomVal(uint64_t* board);
+
 /* Convert and print board state from uint64_t
  */
 void printBoard(uint64_t board);
@@ -41,6 +44,10 @@ void printBoard(uint64_t board);
 /* Next board state read from table
  */
 uint64_t nextBoardTable(uint64_t board, uint16_t* table, int direction);
+
+int getMoveDirection();
+
+uint64_t gameClock(uint64_t board, uint16_t* table, int direction);
 
 /* Board state after move
    DONT USE IT IT IS NOT FINISHED

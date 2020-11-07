@@ -1,5 +1,9 @@
 #include "game.h"
 
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<> distrib(0, 0xF);
+
 void swipeRow(uint8_t* row)
 {
 	for (int i = 3; i > 0; i--) {
@@ -72,6 +76,22 @@ void boardStateToArray(uint64_t board, uint8_t* arr)
 	}
 }
 
+bool addRandomVal(uint64_t* board) {
+	uint8_t arr[16];
+	boardStateToArray(*board, arr);
+	int ch{};
+	for (uint8_t e : arr)
+		if (e != 0)
+			ch++;
+	if (ch == 15)
+		return false;
+	int r = distrib(gen);
+	while (arr[r] != 0)
+		r = distrib(gen);
+	*board += 1 << (4*(15-r));
+	return true;
+}
+
 void printBoard(uint64_t board) 
 {
 	uint8_t arr[16];
@@ -106,7 +126,7 @@ uint64_t nextBoardTable(uint64_t board, uint16_t* table, int direction)
 	else
 		std::memcpy(rows, &board, sizeof uint64_t);
 
-	if (direction < 3)
+	if (direction < 2)
 		for (int i = 0; i < 4; i++)
 			rows[i] = table[rows[i]];
 	else
@@ -133,6 +153,40 @@ uint64_t nextBoardTable(uint64_t board, uint16_t* table, int direction)
 	return newBoard;
 }
 
+int getMoveDirection()
+{
+	char inputChar;
+	int direction{};
+	std::cout << "Where to move?\n";
+	std::cin >> inputChar;
+	switch (inputChar)
+	{
+	case 'w':
+		direction = 0;
+		break;
+	case 'd':
+		direction = 1;
+		break;
+	case 's':
+		direction = 2;
+		break;
+	case 'a':
+		direction = 3;
+	}
+	return direction;
+}
+
+uint64_t gameClock (uint64_t board, uint16_t* table,int direction)
+{
+	
+	uint64_t newBoard = nextBoardTable(board, table, direction);
+
+	if (board != newBoard) {
+		addRandomVal(&newBoard);
+	}
+	printBoard(newBoard);
+	return newBoard;
+}
 /*
 uint64_t nextBoard (uint64_t board, int direction)
 {
