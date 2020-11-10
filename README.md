@@ -29,3 +29,9 @@ This approach takes random number to select move and preforms it. With added add
 ## Neural network
 
 Well it is kinda self explanatory. In this particular case array of whole game board is given with score and the output is array of moves.
+
+## MinMax
+
+## Expectiminimax
+
+## Hardcode algorithm
