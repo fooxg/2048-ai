@@ -40,4 +40,4 @@ Really similar to MinMax but added few corrections to uncertainties due to rando
 
 ## Hardcode algorithm
 
-Works similar to random shuffle with limited one way. This algorithm will try to do some basic stuff to follow pattern:
+Works similar to random shuffle with limited one way. This algorithm will try to do some basic stuff to follow zig zag pattern starting from top and slowly descending in order.
