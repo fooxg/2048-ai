@@ -32,6 +32,12 @@ Well it is kinda self explanatory. In this particular case array of whole game b
 
 ## MinMax
 
+Find best move by looking at possible outcomes (simulate x next game states)
+
 ## Expectiminimax
 
+Really similar to MinMax but added few corrections to uncertainties due to random values.
+
 ## Hardcode algorithm
+
+Works similar to random shuffle with limited one way. This algorithm will try to do some basic stuff to follow pattern:
