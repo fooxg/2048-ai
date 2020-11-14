@@ -4,6 +4,7 @@ This repository will consist fast 2048 that can be played in console and few AI 
 ## Updates
 
 Now it contains working game in console (without winning conditions)
+nn branch with basic neural network definitions in progress
 
 ## TODO
 
